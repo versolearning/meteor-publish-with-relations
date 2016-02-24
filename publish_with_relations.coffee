@@ -1,15 +1,18 @@
-Meteor.publishWithRelations = (params) ->
+Meteor.publishWithRelations = (params, includeArchived) ->
   pub = params.handle
   collection = params.collection
   associations = {}
+
   publishAssoc = (collection, filter, options) ->
-    collection.find(filter, options).observeChanges
+    cursor = if includeArchived then collection.findIncludeArchived(filter, options) else collection.find(filter, options)
+    cursor.observeChanges
       added: (id, fields) =>
         pub.added(collection._name, id, fields)
       changed: (id, fields) =>
         pub.changed(collection._name, id, fields)
       removed: (id) =>
         pub.removed(collection._name, id)
+
   doMapping = (id, obj, mappings) ->
     return unless mappings
     for mapping in mappings
@@ -40,7 +43,9 @@ Meteor.publishWithRelations = (params) ->
 
   filter = params.filter
   options = params.options
-  collectionHandle = collection.find(filter, options).observeChanges
+
+  cursor = if includeArchived then collection.findIncludeArchived(filter, options) else collection.find(filter, options)
+  collectionHandle = cursor.observeChanges
     added: (id, fields) ->
       pub.added(collection._name, id, fields)
       associations[id] ?= {}
@@ -54,7 +59,7 @@ Meteor.publishWithRelations = (params) ->
       handle.stop() for handle in associations[id]
       pub.removed(collection._name, id)
   pub.ready() unless params._noReady
-  
+
   pub.onStop ->
     for id, association of associations
       handle.stop() for key, handle of association

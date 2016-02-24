@@ -1,8 +1,8 @@
 Package.describe({
-  name: "tmeasday:publish-with-relations",
+  name: "npvn:publish-with-relations",
   summary: "Publish associated collections at once.",
   version: "0.2.1",
-  git: "https://github.com/tmeasday/meteor-publish-with-relations.git"
+  git: "https://github.com/npvn/meteor-publish-with-relations.git"
 });
 
 Package.on_use(function(api) {
@@ -16,7 +16,7 @@ Package.on_test(function(api) {
     'tinytest',
     'coffeescript',
     'underscore',
-    'tmeasday:publish-with-relations',
+    'npvn:publish-with-relations',
     'mongo-livedata'], 'server');
 
   api.add_files('publish_with_relations_test.coffee', 'server');

@@ -3,6 +3,11 @@
 Publish with relations builds on Tom's [gist](https://gist.github.com/tmeasday/4042603) 
 to provide a convenient way to publish associated records.
 
+## Note
+
+The current implementation is developed specifically for Verso. Please feel free to make a fork
+and tweak the package to fit the requirements of your app.
+
 ## Installation
 
 Publish with relations can be installed with [Meteorite](https://github.com/oortcloud/meteorite/).

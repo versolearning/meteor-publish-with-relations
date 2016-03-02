@@ -1,8 +1,7 @@
 Package.describe({
-  name: "npvn:publish-with-relations",
+  name: "publish-with-relations",
   summary: "Publish associated collections at once.",
-  version: "0.2.1",
-  git: "https://github.com/npvn/meteor-publish-with-relations.git"
+  version: "0.2.1"
 });
 
 Package.on_use(function(api) {

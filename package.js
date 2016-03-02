@@ -15,7 +15,7 @@ Package.on_test(function(api) {
     'tinytest',
     'coffeescript',
     'underscore',
-    'npvn:publish-with-relations',
+    'publish-with-relations',
     'mongo-livedata'], 'server');
 
   api.add_files('publish_with_relations_test.coffee', 'server');
